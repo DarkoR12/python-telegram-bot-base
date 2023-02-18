@@ -7,7 +7,7 @@
  |____/_/   \_\_| \_\_|\_\___/|_| \_\_|_____|                      
 
 TUTORIAL BÁSICO PARA BOTS DE TELEGRAM POR DARKOR12
-V13.10
+V13.15
 
 DOCUMENTACIÓN: https://python-telegram-bot.readthedocs.io/en/stable/index.html
 WIKI: https://github.com/python-telegram-bot/python-telegram-bot/wiki
@@ -34,7 +34,7 @@ def start(update: Update, context: CallbackContext):
         # Si alguien entra a un enlace como este y le da a "START", tu bot recibirá el TOKEN en args
         pass
 
-    bot.sendMessage(chatID, 'Hola, esto es un mensaje de prueba!')  # Puedes meterle botones, markdown, html...
+    bot.sendMessage(chatID, 'Hola, esto es un mensaje de prueba!')  # Puedes añadir botones, markdown, html...
     update.message.reply_text('Hola pero respondiendo al mensaje')  # Aquí igual
     print(f"{user.name} ({user.id} ~ {chatID}) -> /start")
 
@@ -72,13 +72,12 @@ def otherUpdates(update: Update, context: CallbackContext):
 
 def main():
     updater = Updater('tu:token')  # El TOKEN de tu bot creado con @BotFather
-
     dp = updater.dispatcher  # Dispatcher de los eventos
 
-    def addC(filter, handler, **args):  # Esto lo he creado por comodidad
+    def addC(filter, handler, **args):  # Función auxiliar
         dp.add_handler(CommandHandler(filter, handler, **args))
 
-    def addM(filter, handler, **args):  # Esto lo he creado por comodidad
+    def addM(filter, handler, **args):  # Función auxiliar
         dp.add_handler(MessageHandler(filter, handler, **args))
 
     addC('start', start)  # Con addC añades un handler para comandos "/" y con addM para recibir todos los mensajes
